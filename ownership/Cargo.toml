@@ -1,0 +1,16 @@
+[package]
+name = "ownership"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "ownership_functions"
+path = "src/ownership_functions_main.rs"
+
+[[bin]]
+name = "mut_ref"
+path = "src/mut_ref.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
