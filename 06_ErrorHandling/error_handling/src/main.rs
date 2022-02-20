@@ -1,3 +1,4 @@
+#![allow(unused_variables)]
 use std::fs::File;
 use std::io::ErrorKind;
 
@@ -7,10 +8,14 @@ fn test_panic() {
 }
 
 fn main() {
-    #[allow(unused_variables)]
+    // When an error is unrecoverable, we call `panic`
+    // test_panic();
+
+    // However, in some cases error is `recoverable` and
+    // we can continue, probably with a reduced functionality
     let f = File::open("hello.txt");
 
-    let _f = match f {
+    let f = match f {
         Ok(file) => file,
         Err(error) => match error.kind(){
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -21,5 +26,4 @@ fn main() {
         },
     };
 
-    //test_panic();
 }

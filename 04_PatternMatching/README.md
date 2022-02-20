@@ -59,6 +59,7 @@ Using `iter()`, we can convert a list to an enumerated list and iterate over it.
 ```rust
 	for PATTERN in VALUE {
 		// do stuff
+
 	}
 ```
 
@@ -67,6 +68,6 @@ Just like decomposing:
 
 ```rust
 	fn <function name> (VALUE: PATTERN) {
-		// do stuff	
-	}
+	
+}
 ```
