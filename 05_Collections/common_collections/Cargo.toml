@@ -1,0 +1,20 @@
+[package]
+name = "common_collections"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "vector"
+path = "src/bin/vector.rs"
+
+[[bin]]
+name = "string"
+path = "src/bin/string.rs"
+
+[[bin]]
+name = "hash_map"
+path = "src/bin/hash_map.rs"
+
+[dependencies]
