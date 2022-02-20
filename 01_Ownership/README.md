@@ -21,7 +21,7 @@ Rust ownership system enforces 3 rules to be satisfied:
 
 Look at this example:
 
-```
+```rust
 	let s1 = String::from("Hello, Ownership!");
 	let s2 = s1;
 
@@ -32,7 +32,7 @@ What happens under the hood, is that first rust writes the string "Hello, Owners
 
 To prove it, you can simply print out `s1`'s content,
 
-```
+```rust
 	println!("{}", s1);
 ```
 
@@ -56,7 +56,7 @@ You find these rules so restrictive, that you might think they even limit the fu
 
 What's a reference? As the name suggests, Reference is a reference to a value without owning it. Let's see an example:
 
-```
+```rust
 	let s1 = String::from("Hello, Ownership!");
 	let s2 = &s1;
 ```

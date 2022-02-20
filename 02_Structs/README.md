@@ -25,7 +25,7 @@ let black = Colour(0,0,0);
 To create a new struct instance, we can either
 1. Define an instance with subfields provided:
 
-```
+```rust
 struct Circle {
     centre_x: u32,
 	centre_y: u32,
@@ -42,7 +42,7 @@ let c: Cricle = Circle {
 
 2. Use a build associated function
 
-```
+```rust
 let c: Circle = Circle::new(5, 20, 7);
 
 ```
@@ -52,7 +52,7 @@ if you want to use the second method, you have to implement the associated funct
 ## impl Block
 `impl` block describes the API presented to the programmer to manipulate struct's data or do some required functionality. It's syntax is:
 
-```
+```rust
 struct Circle {
     centre_x: f32,
 	centre_y: f32,
