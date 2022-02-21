@@ -13,6 +13,9 @@ fn main() {
     post.reject();
     assert_eq!("", post.content());
 
+    post.request_review();
+    assert_eq!("", post.content());
+
     post.approve();
     assert_eq!(content, post.content());
 
