@@ -39,16 +39,27 @@ impl<T, U, V> Cacher<T, U, V>
 fn main() {
     let mut expensive_closure = Cacher::new(|input| {
         println!("Calculating Slowly");
-        thread::sleep(Duration::from_secs(5));
+        thread::sleep(Duration::from_secs(2));
         input
     });
 
-    //expensive_closure.value(2);
-    //expensive_closure.value(&"Helloo");
+    expensive_closure.value(2);
+    expensive_closure.value(3);
+    expensive_closure.value(2);
+
+    println!("{} is Value", expensive_closure.value(2));
+
+    let mut expensive_closure = Cacher::new(|input| {
+        println!("Calculating Slowly");
+        thread::sleep(Duration::from_secs(2));
+        input
+    });
+
     let s1 = String::from("Helloo");
     let s2 = String::from("Hello");
+
     expensive_closure.value(&s1);
     expensive_closure.value(&s2);
-    //expensive_closure.value(&"Hello");
-    //expensive_closure.value(2);
+    
+    println!("{} is Value", expensive_closure.value(&s2));
 }
