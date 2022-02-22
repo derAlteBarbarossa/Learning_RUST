@@ -47,7 +47,14 @@ fn spawn_with_builder(num_thread: usize)
 }
 
 fn main() {
+    // Just spwaning a thread doesn't gurantee
+    // that it would finish its execution
     //spawn_thread(10);
+
+    // To assure that a spawned thread would finish,
+    // we need to block the main thread and wait
+    // for the spawned threads
     //spawn_and_join(10);
-    spawn_with_builder(10);
+    
+    //spawn_with_builder(10);
 }
