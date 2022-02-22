@@ -57,6 +57,6 @@ fn main() {
             Box::new(Cons(3,
                 Box::new(Nil))))));
 
-    // println!("the first element: {}", list.get_value().unwrap());
+    println!("the first element: {}", list.get_value().unwrap());
     list.traverse();
 }
