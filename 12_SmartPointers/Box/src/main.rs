@@ -1,35 +1,62 @@
-use std::rc::{Rc, Weak};
-use std::cell::RefCell;
-
-#[derive(Debug)]
+// We use Box as indirection, when creating recursive types:
 enum List {
-    Cons(i32, RefCell<Weak<List>>),
+    Cons(i32, Box<List>),
     Nil,
 }
 
 impl List {
-    fn tail(&self) -> Option<&RefCell<Weak<List>>> {
+
+    fn traverse(self) {
+
+        let mut head: Box<List> = Box::new(self);
+        println!("{}", head.get_value().unwrap());
+        
+        while let Some(next_node) = head.next() {
+            match next_node.get_value() {
+                Some(value) => {
+                    println!("{}", value)
+                },
+                None => {
+                    return
+                }
+            }
+
+            head = next_node;
+        }
+    }
+
+    fn next(self) -> Option<Box<List>> {
         match self {
-            List::Cons(_, item) => Some(item),
-            Nil => None,
+            Cons(_, item) => {
+                Some(item)
+            },
+
+            Nil => {
+                None
+            }
+        }
+    }
+
+    fn get_value(&self) -> Option<i32> {
+        match self {
+            Cons(item, _) => {
+                Some(*item)
+            },
+            Nil => {
+                None
+            }
         }
     }
 }
 
-fn main()
-{
-    let a = Rc::new(List::Cons(5, RefCell::new(Weak::new())));
-    let b = Rc::new(List::Cons(10, RefCell::new(Weak::new())));
-  
-    /*
-    let c = Rc::new(List::Cons(15, RefCell::new(Rc::clone(&b))));
+use List::{Cons, Nil};
 
-    println!("c next item: {:?}", c.tail());
-    */
+fn main() {
+    let list = Cons(1,
+        Box::new(Cons(2,
+            Box::new(Cons(3,
+                Box::new(Nil))))));
 
-    //if let Some(link) = a.tail() { 
-    //    *link.borrow_mut() = Rc::clone(&b);
-    //}
-    // Uncomment the next line to see that we have a cycle; // it will overflow the stack.
-    //println!("a next item = {:?}", b.tail());
+    // println!("the first element: {}", list.get_value().unwrap());
+    list.traverse();
 }
